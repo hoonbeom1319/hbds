@@ -1,2 +1,2 @@
-export * from './confirm/confirm';
-export * from './slide/slide';
+export * from './confirm';
+export * from './slide';

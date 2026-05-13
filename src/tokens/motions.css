@@ -1,0 +1,14 @@
+@theme {
+    --animate-accordion-down: accordion-down 250ms ease-out;
+    --animate-accordion-up: accordion-up 250ms ease-out;
+}
+
+@keyframes accordion-down {
+    from { grid-template-rows: 0fr; }
+    to { grid-template-rows: 1fr; }
+}
+
+@keyframes accordion-up {
+    from { grid-template-rows: 1fr; }
+    to { grid-template-rows: 0fr; }
+}

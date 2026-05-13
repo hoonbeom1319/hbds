@@ -1,6 +1,6 @@
-import { ComponentProps, PropsWithChildren } from 'react';
+import { ComponentProps, PropsWithChildren, ReactNode } from 'react';
 
-import { cn } from '../../lib/utils';
+import { cn } from '../lib/utils';
 import {
     Button,
     useConfirm,
@@ -11,9 +11,9 @@ import {
     ConfirmClose,
     ConfirmButton as PConfirmButton,
     CancelButton as PCancelButton,
-} from '../../primitives';
+} from '../primitives';
 
-const Confirm = ({ name, children, className }: ComponentProps<typeof PConfirm> & { className?: string }) => {
+const Confirm = ({ name, children, className }: Omit<ComponentProps<typeof PConfirm>, 'children'> & { className?: string; children: ReactNode | ((data: unknown) => ReactNode) }) => {
     return (
         <PConfirm name={name}>
             <ConfirmOverlay className="z-backdrop fixed inset-0 bg-black/50" />
