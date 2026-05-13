@@ -22,4 +22,5 @@ yarn-error.log*
 # Cache
 .turbo
 .tsbuildinfo
-.claude
+.claude/settings.local.json
+.claude/projects/
