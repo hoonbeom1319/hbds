@@ -14,11 +14,13 @@ export default meta;
 export const Basic: StoryObj = {
     render: () => {
         const confirm = useConfirm((s) => s.confirm);
+        const close = useConfirm((s) => s.close);
         const [result, setResult] = useState<string | null>(null);
 
         const handleClick = async () => {
             const ok = await confirm('basic-demo');
             setResult(ok ? '확인 선택' : '취소 선택');
+            close('basic-demo');
         };
 
         return (
@@ -53,11 +55,14 @@ export const WithData: StoryObj = {
     name: 'With Data (데이터 전달)',
     render: () => {
         const confirm = useConfirm((s) => s.confirm);
+        const close = useConfirm((s) => s.close);
         const [result, setResult] = useState<string | null>(null);
 
         const handleClick = async (name: string) => {
             const ok = await confirm('data-demo', { itemName: name });
+            await new Promise((resolve) => setTimeout(resolve, 500));
             setResult(ok ? `"${name}" 삭제 완료` : '취소됨');
+            close('data-demo');
         };
 
         return (
@@ -82,6 +87,7 @@ export const WithData: StoryObj = {
                             <>
                                 <ConfirmTitle>"{itemName}" 삭제</ConfirmTitle>
                                 <ConfirmBody>선택한 항목을 삭제합니다. 이 작업은 되돌릴 수 없습니다.</ConfirmBody>
+                                <ConfirmBody>선택한 항목을 삭제합니다. 이 작업은 되돌릴 수 없습니다.</ConfirmBody>
                                 <ConfirmButtonGroup>
                                     <CancelButton name="data-demo" className="rounded border px-4 py-2 text-sm">
                                         취소
@@ -103,12 +109,26 @@ export const HiddenTitle: StoryObj = {
     name: 'Hidden Title',
     render: () => {
         const confirm = useConfirm((s) => s.confirm);
+        const close = useConfirm((s) => s.close);
+        const [result, setResult] = useState<string | null>(null);
 
+        const handleClick = async () => {
+            const ok = await confirm('hidden-title-demo');
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            setResult(ok ? '로그아웃 진행' : '로그아웃 취소');
+            close('hidden-title-demo');
+        };
+        
         return (
-            <div>
-                <button onClick={() => confirm('hidden-title-demo')} className="bg-primary-500 rounded px-4 py-2 text-sm text-white">
+            <div className="flex flex-col items-start gap-4">
+                <button onClick={handleClick} className="bg-primary-500 rounded px-4 py-2 text-sm text-white">
                     열기
                 </button>
+                {result && (
+                    <p className="text-sm text-neutral-600">
+                        결과: <strong>{result}</strong>
+                    </p>
+                )}
 
                 <Confirm name="hidden-title-demo">
                     <ConfirmTitle hidden hideClose>

@@ -49,7 +49,7 @@ const ConfirmButtonGroup = ({ children, className }: PropsWithChildren<{ classNa
 
 const ConfirmButton = ({ className, name, children, onClick }: ComponentProps<typeof PConfirmButton>) => {
     return (
-        <PConfirmButton className={className} name={name} onClick={onClick} asChild>
+        <PConfirmButton className={className} name={name} onClick={onClick}>
             {children}
         </PConfirmButton>
     );
@@ -57,7 +57,7 @@ const ConfirmButton = ({ className, name, children, onClick }: ComponentProps<ty
 
 const CancelButton = ({ className, name, children, onClick }: ComponentProps<typeof PCancelButton>) => {
     return (
-        <PCancelButton className={className} name={name} onClick={onClick} asChild>
+        <PCancelButton className={className} name={name} onClick={onClick}>
             {children}
         </PCancelButton>
     );
