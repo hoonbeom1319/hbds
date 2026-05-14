@@ -1,5 +1,4 @@
 import { defineConfig } from 'tsup';
-import { cp } from 'node:fs/promises';
 
 export default defineConfig({
   entry: {
@@ -19,7 +18,5 @@ export default defineConfig({
   treeshake: true,
   splitting: false,
   external: ['react', 'react-dom'],
-  async onSuccess() {
-    await cp('src/tokens', 'dist/tokens', { recursive: true });
-  }
+  onSuccess: 'rm -rf dist/tokens && cp -R src/tokens dist/tokens'
 });

@@ -3,15 +3,14 @@ import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 
 import { cn } from '../lib/utils';
 
-type RadioGroupProps = React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>;
-type RadioGroupItemProps = React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>;
+type RadioGroupProps = React.ComponentPropsWithRef<typeof RadioGroupPrimitive.Root>;
+type RadioGroupItemProps = React.ComponentPropsWithRef<typeof RadioGroupPrimitive.Item>;
 
-const RadioGroup = React.forwardRef<React.ElementRef<typeof RadioGroupPrimitive.Root>, RadioGroupProps>(({ className, ...props }, ref) => (
+const RadioGroup = ({ className, ref, ...props }: RadioGroupProps) => (
     <RadioGroupPrimitive.Root ref={ref} className={cn('flex flex-col gap-2', className)} {...props} />
-));
-RadioGroup.displayName = 'RadioGroup';
+);
 
-const RadioGroupItem = React.forwardRef<React.ElementRef<typeof RadioGroupPrimitive.Item>, RadioGroupItemProps>(({ className, ...props }, ref) => (
+const RadioGroupItem = ({ className, ref, ...props }: RadioGroupItemProps) => (
     <RadioGroupPrimitive.Item
         ref={ref}
         className={cn(
@@ -25,8 +24,7 @@ const RadioGroupItem = React.forwardRef<React.ElementRef<typeof RadioGroupPrimit
     >
         <RadioGroupPrimitive.Indicator className="flex items-center justify-center after:block after:h-2 after:w-2 after:rounded-full after:bg-primary-600" />
     </RadioGroupPrimitive.Item>
-));
-RadioGroupItem.displayName = 'RadioGroupItem';
+);
 
 export { RadioGroup, RadioGroupItem };
 export type { RadioGroupProps, RadioGroupItemProps };

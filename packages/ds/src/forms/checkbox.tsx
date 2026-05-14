@@ -3,9 +3,9 @@ import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 
 import { cn } from '../lib/utils';
 
-type CheckboxProps = React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>;
+type CheckboxProps = React.ComponentPropsWithRef<typeof CheckboxPrimitive.Root>;
 
-const Checkbox = React.forwardRef<React.ElementRef<typeof CheckboxPrimitive.Root>, CheckboxProps>(({ className, ...props }, ref) => (
+const Checkbox = ({ className, ref, ...props }: CheckboxProps) => (
     <CheckboxPrimitive.Root
         ref={ref}
         className={cn(
@@ -34,8 +34,7 @@ const Checkbox = React.forwardRef<React.ElementRef<typeof CheckboxPrimitive.Root
             </svg>
         </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
-));
-Checkbox.displayName = 'Checkbox';
+);
 
 export { Checkbox };
 export type { CheckboxProps };

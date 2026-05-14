@@ -42,11 +42,10 @@ const FormField = ({ id: idProp, invalid = false, className, children, ...props 
     );
 };
 
-const FormLabel = React.forwardRef<React.ElementRef<typeof Label>, React.ComponentPropsWithoutRef<typeof Label>>((props, ref) => {
+const FormLabel = ({ ref, ...props }: React.ComponentPropsWithRef<typeof Label>) => {
     const ctx = useFieldContext();
     return <Label ref={ref} htmlFor={ctx?.id} {...props} />;
-});
-FormLabel.displayName = 'FormLabel';
+};
 
 const FormControl = ({ children }: { children: React.ReactElement }) => {
     const ctx = useFieldContext();
@@ -61,13 +60,12 @@ const FormControl = ({ children }: { children: React.ReactElement }) => {
     } as Record<string, unknown>);
 };
 
-const FormDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(({ className, ...props }, ref) => {
+const FormDescription = ({ className, ref, ...props }: React.ComponentPropsWithRef<'p'>) => {
     const ctx = useFieldContext();
     return <p ref={ref} id={ctx?.descriptionId} className={cn('text-muted text-xs', className)} {...props} />;
-});
-FormDescription.displayName = 'FormDescription';
+};
 
-const FormError = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(({ className, children, ...props }, ref) => {
+const FormError = ({ className, children, ref, ...props }: React.ComponentPropsWithRef<'p'>) => {
     const ctx = useFieldContext();
     if (!ctx?.invalid || !children) return null;
     return (
@@ -75,8 +73,7 @@ const FormError = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HT
             {children}
         </p>
     );
-});
-FormError.displayName = 'FormError';
+};
 
 export { FormField, FormLabel, FormControl, FormDescription, FormError, useFieldContext };
 export type { FormFieldProps };
