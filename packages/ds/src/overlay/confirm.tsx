@@ -42,17 +42,17 @@ const ConfirmButtonGroup = ({ children, className }: PropsWithChildren<{ classNa
     <div className={cn('flex justify-end gap-2', className)}>{children}</div>
 );
 
-const ConfirmButton = ({ className, name, children, onClick }: ComponentProps<typeof ConfirmPrimitive.ConfirmButton>) => {
+const ConfirmButton = ({ className, name, children, onClick, asChild }: ComponentProps<typeof ConfirmPrimitive.ConfirmButton>) => {
     return (
-        <ConfirmPrimitive.ConfirmButton className={className} name={name} onClick={onClick}>
+        <ConfirmPrimitive.ConfirmButton className={className} name={name} onClick={onClick} asChild={asChild}>
             {children}
         </ConfirmPrimitive.ConfirmButton>
     );
 };
 
-const CancelButton = ({ className, name, children, onClick }: ComponentProps<typeof ConfirmPrimitive.CancelButton>) => {
+const CancelButton = ({ className, name, children, onClick, asChild }: ComponentProps<typeof ConfirmPrimitive.CancelButton>) => {
     return (
-        <ConfirmPrimitive.CancelButton className={className} name={name} onClick={onClick}>
+        <ConfirmPrimitive.CancelButton className={className} name={name} onClick={onClick} asChild={asChild}>
             {children}
         </ConfirmPrimitive.CancelButton>
     );

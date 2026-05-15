@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip';
+import { Button } from '../display/button';
 
 const meta: Meta = {
     title: 'Overlay/Tooltip',
@@ -9,21 +10,12 @@ const meta: Meta = {
 
 export default meta;
 
-const Btn = ({ children }: { children: React.ReactNode }) => (
-    <button
-        type="button"
-        className="border-border hover:bg-neutral-100 inline-flex h-10 items-center rounded-md border bg-transparent px-4 text-sm font-medium"
-    >
-        {children}
-    </button>
-);
-
 export const Default: StoryObj = {
     render: () => (
-        <TooltipProvider>
-            <Tooltip>
+        <TooltipProvider delayDuration={0}>
+            <Tooltip defaultOpen>
                 <TooltipTrigger asChild>
-                    <Btn>호버해 보세요</Btn>
+                    <Button variant="outline">호버해 보세요</Button>
                 </TooltipTrigger>
                 <TooltipContent>아이템을 클립보드에 복사합니다</TooltipContent>
             </Tooltip>
@@ -33,12 +25,12 @@ export const Default: StoryObj = {
 
 export const Sides: StoryObj = {
     render: () => (
-        <TooltipProvider>
-            <div className="grid grid-cols-2 gap-8">
+        <TooltipProvider delayDuration={0}>
+            <div className="grid grid-cols-2 gap-12 p-12">
                 {(['top', 'right', 'bottom', 'left'] as const).map((side) => (
-                    <Tooltip key={side}>
+                    <Tooltip key={side} defaultOpen>
                         <TooltipTrigger asChild>
-                            <Btn>{side}</Btn>
+                            <Button variant="outline">{side}</Button>
                         </TooltipTrigger>
                         <TooltipContent side={side}>side = {side}</TooltipContent>
                     </Tooltip>
@@ -50,12 +42,12 @@ export const Sides: StoryObj = {
 
 export const DelayDuration: StoryObj = {
     render: () => (
-        <TooltipProvider delayDuration={0}>
+        <TooltipProvider delayDuration={800}>
             <Tooltip>
                 <TooltipTrigger asChild>
-                    <Btn>지연 없이 (delayDuration=0)</Btn>
+                    <Button variant="outline">800ms 딜레이 후 표시</Button>
                 </TooltipTrigger>
-                <TooltipContent>즉시 표시</TooltipContent>
+                <TooltipContent>delayDuration=800</TooltipContent>
             </Tooltip>
         </TooltipProvider>
     )

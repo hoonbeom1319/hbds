@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
 import { Button } from '../display/button';
+import { Input } from '../forms/input';
+import { Label } from '../forms/label';
 import { Popover, PopoverTrigger, PopoverContent } from './popover';
 
 const meta: Meta = {
@@ -34,9 +35,12 @@ export const WithForm: Story = {
             </PopoverTrigger>
             <PopoverContent className="w-80">
                 <div className="flex flex-col gap-3">
-                    <p className="text-sm font-semibold">Edit name</p>
-                    <input className="rounded border border-border px-2 py-1 text-sm w-full" placeholder="Enter name" />
-                    <Button size="sm">Save</Button>
+                    <p className="text-sm font-semibold">이름 수정</p>
+                    <div className="flex flex-col gap-1.5">
+                        <Label htmlFor="popover-name">이름</Label>
+                        <Input id="popover-name" placeholder="이름을 입력하세요" />
+                    </div>
+                    <Button size="sm">저장</Button>
                 </div>
             </PopoverContent>
         </Popover>
