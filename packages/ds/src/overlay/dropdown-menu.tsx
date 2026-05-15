@@ -1,0 +1,139 @@
+import * as React from 'react';
+
+import {
+    DropdownMenu,
+    DropdownMenuTrigger,
+    DropdownMenuPortal,
+    DropdownMenuContent as PDropdownMenuContent,
+    DropdownMenuItem as PDropdownMenuItem,
+    DropdownMenuCheckboxItem as PDropdownMenuCheckboxItem,
+    DropdownMenuRadioGroup,
+    DropdownMenuRadioItem as PDropdownMenuRadioItem,
+    DropdownMenuItemIndicator,
+    DropdownMenuLabel as PDropdownMenuLabel,
+    DropdownMenuSeparator as PDropdownMenuSeparator,
+    DropdownMenuSub,
+    DropdownMenuSubTrigger as PDropdownMenuSubTrigger,
+    DropdownMenuSubContent as PDropdownMenuSubContent
+} from '../primitives';
+import { cn } from '../lib/utils';
+
+const DropdownMenuContent = ({ className, sideOffset = 4, ref, ...props }: React.ComponentPropsWithRef<typeof PDropdownMenuContent>) => (
+    <DropdownMenuPortal>
+        <PDropdownMenuContent
+            ref={ref}
+            sideOffset={sideOffset}
+            className={cn(
+                'z-dropdown min-w-32 overflow-hidden rounded-md border border-border bg-surface p-1 shadow-md',
+                'data-[state=open]:animate-in data-[state=closed]:animate-out',
+                'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+                'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
+                'data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2',
+                className
+            )}
+            {...props}
+        />
+    </DropdownMenuPortal>
+);
+
+const DropdownMenuItem = ({ className, ref, ...props }: React.ComponentPropsWithRef<typeof PDropdownMenuItem>) => (
+    <PDropdownMenuItem
+        ref={ref}
+        className={cn(
+            'relative flex cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors',
+            'hover:bg-neutral-100 focus:bg-neutral-100',
+            'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+            className
+        )}
+        {...props}
+    />
+);
+
+const DropdownMenuCheckboxItem = ({ className, children, checked, ref, ...props }: React.ComponentPropsWithRef<typeof PDropdownMenuCheckboxItem>) => (
+    <PDropdownMenuCheckboxItem
+        ref={ref}
+        checked={checked}
+        className={cn(
+            'relative flex cursor-pointer select-none items-center rounded-sm py-1.5 pr-2 pl-8 text-sm outline-none transition-colors',
+            'hover:bg-neutral-100 focus:bg-neutral-100',
+            'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+            className
+        )}
+        {...props}
+    >
+        <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+            <DropdownMenuItemIndicator>✓</DropdownMenuItemIndicator>
+        </span>
+        {children}
+    </PDropdownMenuCheckboxItem>
+);
+
+const DropdownMenuRadioItem = ({ className, children, ref, ...props }: React.ComponentPropsWithRef<typeof PDropdownMenuRadioItem>) => (
+    <PDropdownMenuRadioItem
+        ref={ref}
+        className={cn(
+            'relative flex cursor-pointer select-none items-center rounded-sm py-1.5 pr-2 pl-8 text-sm outline-none transition-colors',
+            'hover:bg-neutral-100 focus:bg-neutral-100',
+            'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+            className
+        )}
+        {...props}
+    >
+        <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+            <DropdownMenuItemIndicator>
+                <span className="h-2 w-2 rounded-full bg-current block" />
+            </DropdownMenuItemIndicator>
+        </span>
+        {children}
+    </PDropdownMenuRadioItem>
+);
+
+const DropdownMenuLabel = ({ className, ref, ...props }: React.ComponentPropsWithRef<typeof PDropdownMenuLabel>) => (
+    <PDropdownMenuLabel ref={ref} className={cn('px-2 py-1.5 text-xs font-semibold text-muted', className)} {...props} />
+);
+
+const DropdownMenuSeparator = ({ className, ref, ...props }: React.ComponentPropsWithRef<typeof PDropdownMenuSeparator>) => (
+    <PDropdownMenuSeparator ref={ref} className={cn('-mx-1 my-1 h-px bg-border', className)} {...props} />
+);
+
+const DropdownMenuSubTrigger = ({ className, children, ref, ...props }: React.ComponentPropsWithRef<typeof PDropdownMenuSubTrigger>) => (
+    <PDropdownMenuSubTrigger
+        ref={ref}
+        className={cn(
+            'flex cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none',
+            'focus:bg-neutral-100 data-[state=open]:bg-neutral-100',
+            className
+        )}
+        {...props}
+    >
+        {children}
+        <span className="ml-auto text-xs">›</span>
+    </PDropdownMenuSubTrigger>
+);
+
+const DropdownMenuSubContent = ({ className, ref, ...props }: React.ComponentPropsWithRef<typeof PDropdownMenuSubContent>) => (
+    <PDropdownMenuSubContent
+        ref={ref}
+        className={cn(
+            'z-dropdown min-w-32 overflow-hidden rounded-md border border-border bg-surface p-1 shadow-md',
+            'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+            className
+        )}
+        {...props}
+    />
+);
+
+export {
+    DropdownMenu,
+    DropdownMenuTrigger,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuCheckboxItem,
+    DropdownMenuRadioGroup,
+    DropdownMenuRadioItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuSub,
+    DropdownMenuSubTrigger,
+    DropdownMenuSubContent
+};

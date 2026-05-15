@@ -62,4 +62,14 @@
     --color-surface-foreground: var(--color-slate-900);
     --color-border: var(--color-slate-200);
     --color-muted: var(--color-slate-500);
+
+    /* Z-index scale */
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+    --z-toast: 1080;
 }

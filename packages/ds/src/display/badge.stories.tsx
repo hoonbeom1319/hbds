@@ -1,45 +1,41 @@
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { Badge } from './badge';
 
 const meta: Meta<typeof Badge> = {
     title: 'Display/Badge',
     component: Badge,
     tags: ['autodocs'],
-    parameters: { layout: 'centered' }
+    parameters: { layout: 'centered' },
+    argTypes: {
+        variant: { control: 'select', options: ['default', 'primary', 'secondary', 'success', 'warning', 'danger'] },
+        size: { control: 'select', options: ['sm', 'md'] }
+    }
 };
 
 export default meta;
 type Story = StoryObj<typeof Badge>;
 
-export const Primary: Story = {
-    args: {
-        children: 'Primary',
-        className: 'rounded-full bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-700'
-    }
-};
+export const Default: Story = { args: { children: 'Badge', variant: 'default' } };
 
 export const AllVariants: Story = {
     render: () => (
         <div className="flex flex-wrap gap-2">
-            <Badge className="bg-primary-100 text-primary-700 rounded-full px-2.5 py-0.5 text-xs font-medium">Primary</Badge>
-            <Badge className="bg-secondary-100 text-secondary-700 rounded-full px-2.5 py-0.5 text-xs font-medium">Secondary</Badge>
-            <Badge className="bg-tertiary-100 text-tertiary-700 rounded-full px-2.5 py-0.5 text-xs font-medium">Tertiary</Badge>
-            <Badge className="rounded-full bg-neutral-100 px-2.5 py-0.5 text-xs font-medium text-neutral-700">Neutral</Badge>
-            <Badge className="rounded-full bg-sky-50 px-2.5 py-0.5 text-xs font-medium text-sky-600">Info</Badge>
-            <Badge className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-600">Success</Badge>
-            <Badge className="rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-medium text-amber-600">Warning</Badge>
-            <Badge className="rounded-full bg-rose-50 px-2.5 py-0.5 text-xs font-medium text-rose-600">Danger</Badge>
+            <Badge variant="default">Default</Badge>
+            <Badge variant="primary">Primary</Badge>
+            <Badge variant="secondary">Secondary</Badge>
+            <Badge variant="success">Success</Badge>
+            <Badge variant="warning">Warning</Badge>
+            <Badge variant="danger">Danger</Badge>
         </div>
     )
 };
 
-export const Solid: Story = {
+export const Sizes: Story = {
     render: () => (
-        <div className="flex flex-wrap gap-2">
-            <Badge className="bg-primary-600 rounded-full px-2.5 py-0.5 text-xs font-medium text-white">Primary</Badge>
-            <Badge className="bg-secondary-600 rounded-full px-2.5 py-0.5 text-xs font-medium text-white">Secondary</Badge>
-            <Badge className="rounded-full bg-emerald-500 px-2.5 py-0.5 text-xs font-medium text-white">Success</Badge>
-            <Badge className="rounded-full bg-rose-500 px-2.5 py-0.5 text-xs font-medium text-white">Danger</Badge>
+        <div className="flex items-center gap-2">
+            <Badge size="sm">Small</Badge>
+            <Badge size="md">Medium</Badge>
         </div>
     )
 };
@@ -48,16 +44,16 @@ export const WithDot: Story = {
     name: 'With Status Dot',
     render: () => (
         <div className="flex flex-wrap gap-2">
-            <Badge className="flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-600">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            <Badge variant="success">
+                <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-success inline-block" />
                 Active
             </Badge>
-            <Badge className="flex items-center gap-1.5 rounded-full bg-neutral-100 px-2.5 py-0.5 text-xs font-medium text-neutral-500">
-                <span className="h-1.5 w-1.5 rounded-full bg-neutral-400" />
+            <Badge variant="default">
+                <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-neutral-400 inline-block" />
                 Inactive
             </Badge>
-            <Badge className="flex items-center gap-1.5 rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-medium text-amber-600">
-                <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+            <Badge variant="warning">
+                <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-warning inline-block" />
                 Pending
             </Badge>
         </div>

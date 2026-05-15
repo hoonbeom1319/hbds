@@ -9,6 +9,7 @@ export default defineConfig({
     'surfaces/index': 'src/surfaces/index.ts',
     'forms/index': 'src/forms/index.ts',
     'feedback/index': 'src/feedback/index.ts',
+    'navigation/index': 'src/navigation/index.ts',
     'lib/utils': 'src/lib/utils.ts'
   },
   format: ['esm', 'cjs'],

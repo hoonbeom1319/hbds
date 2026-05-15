@@ -1,0 +1,44 @@
+import { ComponentProps } from 'react';
+
+import { Button as PButton } from '../primitives';
+import { cn } from '../lib/utils';
+
+type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
+type ButtonSize = 'sm' | 'md' | 'lg';
+
+const variantClass: Record<ButtonVariant, string> = {
+    primary: 'bg-primary-600 text-white border border-primary-600 hover:bg-primary-700 hover:border-primary-700',
+    secondary: 'bg-secondary-600 text-white border border-secondary-600 hover:bg-secondary-700 hover:border-secondary-700',
+    outline: 'bg-transparent text-surface-foreground border border-border hover:bg-neutral-50',
+    ghost: 'bg-transparent text-surface-foreground border border-transparent hover:bg-neutral-100',
+    danger: 'bg-danger text-white border border-danger hover:bg-rose-600 hover:border-rose-600'
+};
+
+const sizeClass: Record<ButtonSize, string> = {
+    sm: 'h-8 px-3 text-xs rounded',
+    md: 'h-10 px-4 text-sm rounded-md',
+    lg: 'h-12 px-6 text-base rounded-md'
+};
+
+type ButtonProps = ComponentProps<typeof PButton> & {
+    variant?: ButtonVariant;
+    size?: ButtonSize;
+};
+
+const Button = ({ variant = 'primary', size = 'md', className, ...props }: ButtonProps) => (
+    <PButton
+        className={cn(
+            'inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap font-medium',
+            'transition-colors duration-150',
+            'focus-visible:ring-primary-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+            'disabled:pointer-events-none disabled:opacity-50',
+            variantClass[variant],
+            sizeClass[size],
+            className
+        )}
+        {...props}
+    />
+);
+
+export { Button };
+export type { ButtonProps, ButtonVariant, ButtonSize };

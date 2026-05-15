@@ -6,3 +6,6 @@ export * from './checkbox';
 export * from './radio-group';
 export * from './switch';
 export * from './select';
+export * from './slider';
+export * from './toggle';
+export * from './toggle-group';

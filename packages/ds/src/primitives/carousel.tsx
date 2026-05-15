@@ -33,7 +33,7 @@ type CarouselProps = HTMLAttributes<HTMLDivElement> &
         plugins?: EmblaPluginType[];
     }>;
 
-const Carousel = ({ className, children, options, plugins, onKeyDown, ...props }: CarouselProps) => {
+const Carousel = ({ className, children, options, plugins, onKeyDown: _onKeyDown, ...props }: CarouselProps) => {
     const [carouselRef, emblaApi] = useEmblaCarousel(options, plugins);
     const [canScrollPrev, setCanScrollPrev] = useState(false);
     const [canScrollNext, setCanScrollNext] = useState(false);
@@ -106,7 +106,7 @@ const CarouselPrevious = ({ disabled, ...props }: ComponentProps<typeof ButtonPr
     const { scrollPrev, canScrollPrev } = useCarousel();
     return (
         <ButtonPrimitive.Button
-            aria-label="?�전 ?�라?�드"
+            aria-label="?�전 ?�라?�드"
             onClick={(e) => {
                 props.onClick?.(e);
                 scrollPrev();
@@ -121,7 +121,7 @@ const CarouselNext = ({ disabled, ...props }: ComponentProps<typeof ButtonPrimit
     const { scrollNext, canScrollNext } = useCarousel();
     return (
         <ButtonPrimitive.Button
-            aria-label="?�음 ?�라?�드"
+            aria-label="?�음 ?�라?�드"
             onClick={(e) => {
                 props.onClick?.(e);
                 scrollNext();
