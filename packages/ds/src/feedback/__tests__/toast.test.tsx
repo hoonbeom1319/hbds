@@ -35,8 +35,9 @@ describe('Toast', () => {
     });
 
     it('viewport has z-toast class', () => {
-        const { container } = render(<TestToast />);
-        const viewport = container.querySelector('ol');
+        render(<TestToast />);
+        // Viewport is portaled to document.body, not inside render container
+        const viewport = document.body.querySelector('ol');
         expect(viewport).toHaveClass('z-toast');
     });
 });

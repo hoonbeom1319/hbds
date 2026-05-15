@@ -1,20 +1,22 @@
 import * as React from 'react';
+import { createPortal } from 'react-dom';
 import * as ToastPrimitive from '@radix-ui/react-toast';
 
 import { cn } from '../lib/utils';
 
 const ToastProvider = ToastPrimitive.Provider;
 
-const ToastViewport = ({ className, ref, ...props }: React.ComponentPropsWithRef<typeof ToastPrimitive.Viewport>) => (
-    <ToastPrimitive.Viewport
-        ref={ref}
-        className={cn(
-            'z-toast fixed top-0 right-0 flex max-h-screen w-full flex-col-reverse gap-2 p-4 sm:top-auto sm:right-0 sm:bottom-0 sm:flex-col md:max-w-[420px]',
-            className
-        )}
-        {...props}
-    />
-);
+const ToastViewport = ({ className, ref, ...props }: React.ComponentPropsWithRef<typeof ToastPrimitive.Viewport>) => {
+    if (typeof document === 'undefined') return null;
+    return createPortal(
+        <ToastPrimitive.Viewport
+            ref={ref}
+            className={cn('z-toast fixed right-0 bottom-0 flex max-h-screen w-full flex-col-reverse gap-2 p-4 md:max-w-[420px]', className)}
+            {...props}
+        />,
+        document.body
+    );
+};
 
 type ToastVariant = 'default' | 'success' | 'warning' | 'danger';
 
@@ -34,11 +36,10 @@ const Toast = ({ className, variant = 'default', ref, ...props }: ToastProps) =>
         ref={ref}
         className={cn(
             'pointer-events-auto relative flex w-full items-center justify-between gap-3 overflow-hidden rounded-md border p-4 pr-6 shadow-lg',
-            'data-[state=open]:animate-in data-[state=closed]:animate-out',
-            'data-[state=closed]:fade-out-80 data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full',
+            'data-[state=open]:animate-toast-in data-[state=closed]:animate-toast-out',
             'data-[swipe=move]:translate-x-(--radix-toast-swipe-move-x) data-[swipe=move]:transition-none',
             'data-[swipe=cancel]:translate-x-0 data-[swipe=cancel]:transition-[transform_200ms_ease-out]',
-            'data-[swipe=end]:animate-out data-[swipe=end]:translate-x-(--radix-toast-swipe-end-x)',
+            'data-[swipe=end]:translate-x-(--radix-toast-swipe-end-x) data-[swipe=end]:opacity-0 data-[swipe=end]:transition-[transform_100ms_ease-in,opacity_100ms_ease-in]',
             variantClass[variant],
             className
         )}
@@ -59,7 +60,7 @@ const ToastAction = ({ className, ref, ...props }: React.ComponentPropsWithRef<t
         ref={ref}
         type="button"
         className={cn(
-            'border-border hover:bg-neutral-100 inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium',
+            'border-border inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium hover:bg-neutral-100',
             'focus-visible:ring-primary-500 focus-visible:ring-2 focus-visible:outline-none',
             'disabled:pointer-events-none disabled:opacity-50',
             className
@@ -81,7 +82,17 @@ const ToastClose = ({ className, ref, ...props }: React.ComponentPropsWithRef<ty
         toast-close=""
         {...props}
     >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-4 w-4"
+            aria-hidden="true"
+        >
             <line x1="18" y1="6" x2="6" y2="18" />
             <line x1="6" y1="6" x2="18" y2="18" />
         </svg>
@@ -89,4 +100,3 @@ const ToastClose = ({ className, ref, ...props }: React.ComponentPropsWithRef<ty
 );
 
 export { ToastProvider, ToastViewport, Toast, ToastTitle, ToastDescription, ToastAction, ToastClose };
-export type { ToastProps, ToastVariant };

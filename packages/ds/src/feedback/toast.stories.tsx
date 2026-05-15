@@ -1,24 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { Toast, ToastAction, ToastClose, ToastDescription, ToastProvider, ToastTitle, ToastViewport } from './toast';
+import { Button } from '../display/button';
 
 const meta: Meta = {
     title: 'Feedback/Toast',
     tags: ['autodocs'],
-    parameters: { layout: 'centered' }
+    parameters: { layout: 'fullscreen' },
+    decorators: [
+        (Story) => (
+            <div className="flex min-h-screen items-center justify-center p-8">
+                <Story />
+            </div>
+        )
+    ]
 };
 
 export default meta;
-
-const Trigger = ({ children, onClick }: { children: React.ReactNode; onClick: () => void }) => (
-    <button
-        type="button"
-        onClick={onClick}
-        className="border-border hover:bg-neutral-100 inline-flex h-10 items-center rounded-md border bg-transparent px-4 text-sm font-medium"
-    >
-        {children}
-    </button>
-);
 
 export const Default: StoryObj = {
     render: () => {
@@ -26,7 +24,9 @@ export const Default: StoryObj = {
             const [open, setOpen] = useState(false);
             return (
                 <ToastProvider>
-                    <Trigger onClick={() => setOpen(true)}>토스트 띄우기</Trigger>
+                    <Button variant="outline" onClick={() => setOpen(true)}>
+                        토스트 띄우기
+                    </Button>
                     <Toast open={open} onOpenChange={setOpen}>
                         <div className="flex flex-col gap-1">
                             <ToastTitle>저장 완료</ToastTitle>
@@ -48,7 +48,9 @@ export const WithAction: StoryObj = {
             const [open, setOpen] = useState(false);
             return (
                 <ToastProvider>
-                    <Trigger onClick={() => setOpen(true)}>되돌리기 가능 토스트</Trigger>
+                    <Button variant="outline" onClick={() => setOpen(true)}>
+                        되돌리기 가능 토스트
+                    </Button>
                     <Toast open={open} onOpenChange={setOpen}>
                         <div className="flex flex-col gap-1">
                             <ToastTitle>메일 삭제됨</ToastTitle>
@@ -74,22 +76,50 @@ export const Variants: StoryObj = {
             return (
                 <ToastProvider>
                     <div className="flex gap-2">
-                        <Trigger onClick={() => setOpen('success')}>성공</Trigger>
-                        <Trigger onClick={() => setOpen('warning')}>경고</Trigger>
-                        <Trigger onClick={() => setOpen('danger')}>오류</Trigger>
+                        <Button variant="outline" onClick={() => setOpen('success')}>성공</Button>
+                        <Button variant="outline" onClick={() => setOpen('warning')}>경고</Button>
+                        <Button variant="outline" onClick={() => setOpen('danger')}>오류</Button>
                     </div>
                     <Toast variant="success" open={open === 'success'} onOpenChange={(v) => !v && setOpen(null)}>
-                        <ToastTitle>성공</ToastTitle>
+                        <ToastTitle>저장이 완료되었습니다.</ToastTitle>
                         <ToastClose />
                     </Toast>
                     <Toast variant="warning" open={open === 'warning'} onOpenChange={(v) => !v && setOpen(null)}>
-                        <ToastTitle>경고</ToastTitle>
+                        <ToastTitle>저장 공간이 부족합니다.</ToastTitle>
                         <ToastClose />
                     </Toast>
                     <Toast variant="danger" open={open === 'danger'} onOpenChange={(v) => !v && setOpen(null)}>
-                        <ToastTitle>오류</ToastTitle>
+                        <ToastTitle>저장에 실패했습니다.</ToastTitle>
                         <ToastClose />
                     </Toast>
+                    <ToastViewport />
+                </ToastProvider>
+            );
+        };
+        return <Demo />;
+    }
+};
+
+export const Multiple: StoryObj = {
+    render: () => {
+        const Demo = () => {
+            const [toasts, setToasts] = useState<Array<{ id: number; message: string }>>([]);
+            let nextId = 0;
+            const addToast = () => {
+                nextId++;
+                setToasts((prev) => [...prev, { id: nextId, message: `알림 #${nextId}` }]);
+            };
+            return (
+                <ToastProvider>
+                    <Button variant="outline" onClick={addToast}>
+                        토스트 추가
+                    </Button>
+                    {toasts.map((t) => (
+                        <Toast key={t.id} open onOpenChange={() => setToasts((prev) => prev.filter((x) => x.id !== t.id))}>
+                            <ToastTitle>{t.message}</ToastTitle>
+                            <ToastClose />
+                        </Toast>
+                    ))}
                     <ToastViewport />
                 </ToastProvider>
             );
