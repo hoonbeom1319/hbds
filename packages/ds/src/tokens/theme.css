@@ -72,4 +72,41 @@
     --z-popover: 1060;
     --z-tooltip: 1070;
     --z-toast: 1080;
+
+    /* Radius scale */
+    --radius-none: 0px;
+    --radius-xs: 0.125rem;   /* 2px */
+    --radius-sm: 0.25rem;    /* 4px */
+    --radius-md: 0.375rem;   /* 6px */
+    --radius-lg: 0.5rem;     /* 8px */
+    --radius-xl: 0.75rem;    /* 12px */
+    --radius-2xl: 1rem;      /* 16px */
+    --radius-3xl: 1.5rem;    /* 24px */
+    --radius-full: 9999px;
+
+    /* Shadow / Elevation scale */
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+    --shadow-none: 0 0 #0000;
+
+    /* Semantic shadow aliases — intent-based names for components */
+    --shadow-card: var(--shadow-sm);
+    --shadow-popover: var(--shadow-lg);
+    --shadow-modal: var(--shadow-xl);
+    --shadow-toast: var(--shadow-lg);
+
+    /* Duration scale */
+    --duration-instant: 0ms;
+    --duration-fast: 100ms;    /* micro-interactions, hover highlights */
+    --duration-normal: 200ms;  /* standard transitions */
+    --duration-slow: 300ms;    /* complex animations, entrances */
+    --duration-slower: 500ms;  /* page-level, deliberate animations */
+
+    /* Easing */
+    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 }
