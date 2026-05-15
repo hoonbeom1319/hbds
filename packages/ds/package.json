@@ -11,11 +11,6 @@
     "README.md"
   ],
   "exports": {
-    "./primitives": {
-      "types": "./dist/primitives/index.d.ts",
-      "import": "./dist/primitives/index.js",
-      "require": "./dist/primitives/index.cjs"
-    },
     "./display": {
       "types": "./dist/display/index.d.ts",
       "import": "./dist/display/index.js",

@@ -1,7 +1,13 @@
+import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import { ToastProvider, ToastViewport, Toast, ToastTitle, ToastDescription } from '../toast';
 
-const TestToast = ({ variant = 'default' as const, open = true }) => (
+type TestToastProps = {
+    variant?: React.ComponentProps<typeof Toast>['variant'];
+    open?: boolean;
+};
+
+const TestToast = ({ variant = 'default', open = true }: TestToastProps) => (
     <ToastProvider>
         <Toast open={open} variant={variant}>
             <ToastTitle>Title</ToastTitle>

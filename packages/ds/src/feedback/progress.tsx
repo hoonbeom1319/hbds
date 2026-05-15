@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import * as ProgressPrimitive from '../primitives';
+import * as ProgressPrimitive from '../primitives/progress';
 import { cn } from '../lib/utils';
 
 type ProgressProps = React.ComponentPropsWithRef<typeof ProgressPrimitive.Progress> & {
@@ -17,4 +17,3 @@ const Progress = ({ className, value = 0, ref, ...props }: ProgressProps) => (
 );
 
 export { Progress };
-export type { ProgressProps };

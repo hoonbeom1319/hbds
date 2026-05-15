@@ -4,7 +4,7 @@ import type { ComponentProps } from 'react';
 import { useMemo } from 'react';
 import Autoplay, { type AutoplayOptionsType } from 'embla-carousel-autoplay';
 import { cn } from '../lib/utils';
-import * as CarouselPrimitive from '../primitives';
+import * as CarouselPrimitive from '../primitives/carousel';
 
 import type { EmblaOptionsType, EmblaPluginType } from 'embla-carousel';
 

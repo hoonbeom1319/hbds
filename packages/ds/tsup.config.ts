@@ -2,7 +2,6 @@ import { defineConfig } from 'tsup';
 
 export default defineConfig({
   entry: {
-    'primitives/index': 'src/primitives/index.ts',
     'display/index': 'src/display/index.ts',
     'layout/index': 'src/layout/index.ts',
     'overlay/index': 'src/overlay/index.ts',

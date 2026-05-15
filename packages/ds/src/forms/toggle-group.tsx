@@ -1,18 +1,18 @@
 import * as React from 'react';
 
-import { ToggleGroup as PToggleGroup, ToggleGroupItem as PToggleGroupItem } from '../primitives';
+import * as ToggleGroupPrimitive from '../primitives/toggle-group';
 import { cn } from '../lib/utils';
 
-type ToggleGroupProps = React.ComponentPropsWithRef<typeof PToggleGroup>;
+type ToggleGroupProps = React.ComponentPropsWithRef<typeof ToggleGroupPrimitive.ToggleGroup>;
 
 const ToggleGroup = ({ className, ref, ...props }: ToggleGroupProps) => (
-    <PToggleGroup ref={ref} className={cn('inline-flex items-center gap-1', className)} {...props} />
+    <ToggleGroupPrimitive.ToggleGroup ref={ref} className={cn('inline-flex items-center gap-1', className)} {...props} />
 );
 
-type ToggleGroupItemProps = React.ComponentPropsWithRef<typeof PToggleGroupItem>;
+type ToggleGroupItemProps = React.ComponentPropsWithRef<typeof ToggleGroupPrimitive.ToggleGroupItem>;
 
 const ToggleGroupItem = ({ className, ref, ...props }: ToggleGroupItemProps) => (
-    <PToggleGroupItem
+    <ToggleGroupPrimitive.ToggleGroupItem
         ref={ref}
         className={cn(
             'inline-flex h-10 items-center justify-center gap-2 rounded-md border border-border bg-transparent px-3 text-sm font-medium',
@@ -27,4 +27,3 @@ const ToggleGroupItem = ({ className, ref, ...props }: ToggleGroupItemProps) => 
 );
 
 export { ToggleGroup, ToggleGroupItem };
-export type { ToggleGroupProps, ToggleGroupItemProps };

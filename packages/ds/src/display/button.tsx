@@ -1,6 +1,6 @@
-import { ComponentProps } from 'react';
+import * as React from 'react';
 
-import { Button as PButton } from '../primitives';
+import * as ButtonPrimitive from '../primitives/button';
 import { cn } from '../lib/utils';
 
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
@@ -20,13 +20,13 @@ const sizeClass: Record<ButtonSize, string> = {
     lg: 'h-12 px-6 text-base rounded-md'
 };
 
-type ButtonProps = ComponentProps<typeof PButton> & {
+type ButtonProps = React.ComponentProps<typeof ButtonPrimitive.Button> & {
     variant?: ButtonVariant;
     size?: ButtonSize;
 };
 
 const Button = ({ variant = 'primary', size = 'md', className, ...props }: ButtonProps) => (
-    <PButton
+    <ButtonPrimitive.Button
         className={cn(
             'inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap font-medium',
             'transition-colors duration-150',
@@ -41,4 +41,3 @@ const Button = ({ variant = 'primary', size = 'md', className, ...props }: Butto
 );
 
 export { Button };
-export type { ButtonProps, ButtonVariant, ButtonSize };

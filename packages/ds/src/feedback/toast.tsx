@@ -36,7 +36,9 @@ const Toast = ({ className, variant = 'default', ref, ...props }: ToastProps) =>
             'pointer-events-auto relative flex w-full items-center justify-between gap-3 overflow-hidden rounded-md border p-4 pr-6 shadow-lg',
             'data-[state=open]:animate-in data-[state=closed]:animate-out',
             'data-[state=closed]:fade-out-80 data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full',
-            'data-[swipe=move]:translate-x-(--radix-toast-swipe-move-x) data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-(--radix-toast-swipe-end-x)',
+            'data-[swipe=move]:translate-x-(--radix-toast-swipe-move-x) data-[swipe=move]:transition-none',
+            'data-[swipe=cancel]:translate-x-0 data-[swipe=cancel]:transition-[transform_200ms_ease-out]',
+            'data-[swipe=end]:animate-out data-[swipe=end]:translate-x-(--radix-toast-swipe-end-x)',
             variantClass[variant],
             className
         )}
@@ -55,6 +57,7 @@ const ToastDescription = ({ className, ref, ...props }: React.ComponentPropsWith
 const ToastAction = ({ className, ref, ...props }: React.ComponentPropsWithRef<typeof ToastPrimitive.Action>) => (
     <ToastPrimitive.Action
         ref={ref}
+        type="button"
         className={cn(
             'border-border hover:bg-neutral-100 inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium',
             'focus-visible:ring-primary-500 focus-visible:ring-2 focus-visible:outline-none',
@@ -68,6 +71,8 @@ const ToastAction = ({ className, ref, ...props }: React.ComponentPropsWithRef<t
 const ToastClose = ({ className, ref, ...props }: React.ComponentPropsWithRef<typeof ToastPrimitive.Close>) => (
     <ToastPrimitive.Close
         ref={ref}
+        type="button"
+        aria-label="Close"
         className={cn(
             'text-muted hover:text-surface-foreground absolute top-2 right-2 rounded-md p-1 opacity-70 transition-opacity hover:opacity-100',
             'focus-visible:ring-primary-500 focus-visible:ring-2 focus-visible:outline-none',

@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import { Separator as PSeparator } from '../primitives';
+import * as SeparatorPrimitive from '../primitives/separator';
 import { cn } from '../lib/utils';
 
-type SeparatorProps = React.ComponentPropsWithRef<typeof PSeparator>;
+type SeparatorProps = React.ComponentPropsWithRef<typeof SeparatorPrimitive.Separator>;
 
 const Separator = ({ className, orientation = 'horizontal', decorative = true, ref, ...props }: SeparatorProps) => (
-    <PSeparator
+    <SeparatorPrimitive.Separator
         ref={ref}
         decorative={decorative}
         orientation={orientation}
@@ -16,4 +16,3 @@ const Separator = ({ className, orientation = 'horizontal', decorative = true, r
 );
 
 export { Separator };
-export type { SeparatorProps };

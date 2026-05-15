@@ -1,18 +1,11 @@
 import * as React from 'react';
 
-import {
-    Popover,
-    PopoverTrigger,
-    PopoverClose,
-    PopoverPortal,
-    PopoverContent as PPopoverContent,
-    PopoverArrow as PPopoverArrow
-} from '../primitives';
+import * as PopoverPrimitive from '../primitives/popover';
 import { cn } from '../lib/utils';
 
-const PopoverContent = ({ className, align = 'center', sideOffset = 4, ref, ...props }: React.ComponentPropsWithRef<typeof PPopoverContent>) => (
-    <PopoverPortal>
-        <PPopoverContent
+const PopoverContent = ({ className, align = 'center', sideOffset = 4, ref, ...props }: React.ComponentPropsWithRef<typeof PopoverPrimitive.PopoverContent>) => (
+    <PopoverPrimitive.PopoverPortal>
+        <PopoverPrimitive.PopoverContent
             ref={ref}
             align={align}
             sideOffset={sideOffset}
@@ -27,11 +20,15 @@ const PopoverContent = ({ className, align = 'center', sideOffset = 4, ref, ...p
             )}
             {...props}
         />
-    </PopoverPortal>
+    </PopoverPrimitive.PopoverPortal>
 );
 
-const PopoverArrow = ({ className, ref, ...props }: React.ComponentPropsWithRef<typeof PPopoverArrow>) => (
-    <PPopoverArrow ref={ref} className={cn('fill-border', className)} {...props} />
+const PopoverArrow = ({ className, ref, ...props }: React.ComponentPropsWithRef<typeof PopoverPrimitive.PopoverArrow>) => (
+    <PopoverPrimitive.PopoverArrow ref={ref} className={cn('fill-border', className)} {...props} />
 );
+
+const Popover = PopoverPrimitive.Popover;
+const PopoverTrigger = PopoverPrimitive.PopoverTrigger;
+const PopoverClose = PopoverPrimitive.PopoverClose;
 
 export { Popover, PopoverTrigger, PopoverContent, PopoverClose, PopoverArrow };

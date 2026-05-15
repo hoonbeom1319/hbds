@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Toggle as PToggle } from '../primitives';
+import * as TogglePrimitive from '../primitives/toggle';
 import { cn } from '../lib/utils';
 
 type ToggleSize = 'sm' | 'md' | 'lg';
@@ -11,12 +11,12 @@ const sizeClass: Record<ToggleSize, string> = {
     lg: 'h-12 px-4 text-base'
 };
 
-type ToggleProps = React.ComponentPropsWithRef<typeof PToggle> & {
+type ToggleProps = React.ComponentPropsWithRef<typeof TogglePrimitive.Toggle> & {
     size?: ToggleSize;
 };
 
 const Toggle = ({ className, size = 'md', ref, ...props }: ToggleProps) => (
-    <PToggle
+    <TogglePrimitive.Toggle
         ref={ref}
         className={cn(
             'inline-flex items-center justify-center gap-2 rounded-md border border-border bg-transparent font-medium',
@@ -32,4 +32,3 @@ const Toggle = ({ className, size = 'md', ref, ...props }: ToggleProps) => (
 );
 
 export { Toggle };
-export type { ToggleProps, ToggleSize };

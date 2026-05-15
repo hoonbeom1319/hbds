@@ -1,41 +1,36 @@
 import { ComponentProps, PropsWithChildren, ReactNode } from 'react';
 
 import { cn } from '../lib/utils';
-import {
-    Button,
-    useConfirm,
-    Confirm as PConfirm,
-    ConfirmOverlay,
-    ConfirmContent as PConfirmContent,
-    ConfirmTitle as PConfirmTitle,
-    ConfirmClose,
-    ConfirmButton as PConfirmButton,
-    CancelButton as PCancelButton,
-} from '../primitives';
+import * as ButtonPrimitive from '../primitives/button';
+import * as ConfirmPrimitive from '../primitives/confirm';
 
-const Confirm = ({ name, children, className }: Omit<ComponentProps<typeof PConfirm>, 'children'> & { className?: string; children: ReactNode | ((data: unknown) => ReactNode) }) => {
+const Confirm = ({
+    name,
+    children,
+    className
+}: Omit<ComponentProps<typeof ConfirmPrimitive.Confirm>, 'children'> & { className?: string; children: ReactNode | ((data: unknown) => ReactNode) }) => {
     return (
-        <PConfirm name={name}>
-            <ConfirmOverlay className="z-backdrop fixed inset-0 bg-black/50" />
-            <PConfirmContent
+        <ConfirmPrimitive.Confirm name={name}>
+            <ConfirmPrimitive.ConfirmOverlay className="z-backdrop fixed inset-0 bg-black/50" />
+            <ConfirmPrimitive.ConfirmContent
                 className={cn('z-modal fixed top-1/2 left-1/2 min-w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white px-4 pb-4', className)}
             >
                 {children}
-            </PConfirmContent>
-        </PConfirm>
+            </ConfirmPrimitive.ConfirmContent>
+        </ConfirmPrimitive.Confirm>
     );
 };
 
-const ConfirmTitle = ({ children, hidden, hideClose, className }: ComponentProps<typeof PConfirmTitle> & { hideClose?: boolean }) => {
+const ConfirmTitle = ({ children, hidden, hideClose, className }: ComponentProps<typeof ConfirmPrimitive.ConfirmTitle> & { hideClose?: boolean }) => {
     return (
         <div className={cn('flex w-full items-center justify-between py-4', hidden && hideClose && 'pt-0 pb-4', className)}>
-            <PConfirmTitle hidden={hidden}>{children}</PConfirmTitle>
+            <ConfirmPrimitive.ConfirmTitle hidden={hidden}>{children}</ConfirmPrimitive.ConfirmTitle>
             {!hideClose && (
-                <ConfirmClose asChild>
-                    <Button className="hb-focus-ring-primary min-h-none min-w-none ml-auto flex cursor-pointer items-center justify-center">
+                <ConfirmPrimitive.ConfirmClose asChild>
+                    <ButtonPrimitive.Button className="hb-focus-ring-primary min-h-none min-w-none ml-auto flex cursor-pointer items-center justify-center">
                         X
-                    </Button>
-                </ConfirmClose>
+                    </ButtonPrimitive.Button>
+                </ConfirmPrimitive.ConfirmClose>
             )}
         </div>
     );
@@ -47,20 +42,22 @@ const ConfirmButtonGroup = ({ children, className }: PropsWithChildren<{ classNa
     <div className={cn('flex justify-end gap-2', className)}>{children}</div>
 );
 
-const ConfirmButton = ({ className, name, children, onClick }: ComponentProps<typeof PConfirmButton>) => {
+const ConfirmButton = ({ className, name, children, onClick }: ComponentProps<typeof ConfirmPrimitive.ConfirmButton>) => {
     return (
-        <PConfirmButton className={className} name={name} onClick={onClick}>
+        <ConfirmPrimitive.ConfirmButton className={className} name={name} onClick={onClick}>
             {children}
-        </PConfirmButton>
+        </ConfirmPrimitive.ConfirmButton>
     );
 };
 
-const CancelButton = ({ className, name, children, onClick }: ComponentProps<typeof PCancelButton>) => {
+const CancelButton = ({ className, name, children, onClick }: ComponentProps<typeof ConfirmPrimitive.CancelButton>) => {
     return (
-        <PCancelButton className={className} name={name} onClick={onClick}>
+        <ConfirmPrimitive.CancelButton className={className} name={name} onClick={onClick}>
             {children}
-        </PCancelButton>
+        </ConfirmPrimitive.CancelButton>
     );
 };
+
+const useConfirm = ConfirmPrimitive.useConfirm;
 
 export { useConfirm, Confirm, ConfirmTitle, ConfirmBody, ConfirmButtonGroup, ConfirmButton, CancelButton };

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { useConfirm } from '../primitives/confirm/use-confirm';
+import * as ConfirmPrimitive from '../primitives/confirm/use-confirm';
 import { Confirm, ConfirmTitle, ConfirmBody, ConfirmButtonGroup, ConfirmButton, CancelButton } from './confirm';
 
 const meta: Meta = {
@@ -13,8 +13,8 @@ export default meta;
 
 export const Basic: StoryObj = {
     render: () => {
-        const confirm = useConfirm((s) => s.confirm);
-        const close = useConfirm((s) => s.close);
+        const confirm = ConfirmPrimitive.useConfirm((s) => s.confirm);
+        const close = ConfirmPrimitive.useConfirm((s) => s.close);
         const [result, setResult] = useState<string | null>(null);
 
         const handleClick = async () => {
@@ -54,8 +54,8 @@ export const Basic: StoryObj = {
 export const WithData: StoryObj = {
     name: 'With Data (데이터 전달)',
     render: () => {
-        const confirm = useConfirm((s) => s.confirm);
-        const close = useConfirm((s) => s.close);
+        const confirm = ConfirmPrimitive.useConfirm((s) => s.confirm);
+        const close = ConfirmPrimitive.useConfirm((s) => s.close);
         const [result, setResult] = useState<string | null>(null);
 
         const handleClick = async (name: string) => {
@@ -108,8 +108,8 @@ export const WithData: StoryObj = {
 export const HiddenTitle: StoryObj = {
     name: 'Hidden Title',
     render: () => {
-        const confirm = useConfirm((s) => s.confirm);
-        const close = useConfirm((s) => s.close);
+        const confirm = ConfirmPrimitive.useConfirm((s) => s.confirm);
+        const close = ConfirmPrimitive.useConfirm((s) => s.close);
         const [result, setResult] = useState<string | null>(null);
 
         const handleClick = async () => {
