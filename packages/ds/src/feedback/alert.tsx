@@ -29,4 +29,3 @@ const AlertDescription = ({ className, ...props }: HTMLAttributes<HTMLParagraphE
 );
 
 export { Alert, AlertTitle, AlertDescription };
-export type { AlertProps, AlertVariant };

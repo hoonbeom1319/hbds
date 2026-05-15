@@ -18,4 +18,3 @@ const Label = ({ className, ref, ...props }: LabelProps) => (
 );
 
 export { Label };
-export type { LabelProps };

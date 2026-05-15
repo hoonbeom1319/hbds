@@ -25,4 +25,3 @@ const Textarea = ({ className, invalid, rows = 4, ref, ...props }: TextareaProps
 );
 
 export { Textarea };
-export type { TextareaProps };

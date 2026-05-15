@@ -22,22 +22,22 @@
 @keyframes toast-in {
     from {
         opacity: 0;
-        transform: translateY(calc(100% + 1rem));
+        transform: translateX(calc(100% + 1rem));
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateX(0);
     }
 }
 
 @keyframes toast-out {
     from {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateX(0);
     }
     to {
         opacity: 0;
-        transform: translateY(calc(100% + 1rem));
+        transform: translateX(calc(100% + 1rem));
     }
 }
 

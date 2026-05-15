@@ -32,4 +32,3 @@ const Badge = ({ className, variant = 'default', size = 'md', ...props }: BadgeP
 );
 
 export { Badge };
-export type { BadgeProps, BadgeVariant, BadgeSize };

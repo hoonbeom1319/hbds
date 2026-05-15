@@ -27,4 +27,3 @@ const RadioGroupItem = ({ className, ref, ...props }: RadioGroupItemProps) => (
 );
 
 export { RadioGroup, RadioGroupItem };
-export type { RadioGroupProps, RadioGroupItemProps };

@@ -76,9 +76,15 @@ export const Variants: StoryObj = {
             return (
                 <ToastProvider>
                     <div className="flex gap-2">
-                        <Button variant="outline" onClick={() => setOpen('success')}>성공</Button>
-                        <Button variant="outline" onClick={() => setOpen('warning')}>경고</Button>
-                        <Button variant="outline" onClick={() => setOpen('danger')}>오류</Button>
+                        <Button variant="outline" onClick={() => setOpen('success')}>
+                            성공
+                        </Button>
+                        <Button variant="outline" onClick={() => setOpen('warning')}>
+                            경고
+                        </Button>
+                        <Button variant="outline" onClick={() => setOpen('danger')}>
+                            오류
+                        </Button>
                     </div>
                     <Toast variant="success" open={open === 'success'} onOpenChange={(v) => !v && setOpen(null)}>
                         <ToastTitle>저장이 완료되었습니다.</ToastTitle>
@@ -99,12 +105,12 @@ export const Variants: StoryObj = {
         return <Demo />;
     }
 };
-
+let nextId = 0;
 export const Multiple: StoryObj = {
     render: () => {
         const Demo = () => {
             const [toasts, setToasts] = useState<Array<{ id: number; message: string }>>([]);
-            let nextId = 0;
+
             const addToast = () => {
                 nextId++;
                 setToasts((prev) => [...prev, { id: nextId, message: `알림 #${nextId}` }]);
@@ -112,7 +118,7 @@ export const Multiple: StoryObj = {
             return (
                 <ToastProvider>
                     <Button variant="outline" onClick={addToast}>
-                        토스트 추가
+                        토스트 추가ㅇ
                     </Button>
                     {toasts.map((t) => (
                         <Toast key={t.id} open onOpenChange={() => setToasts((prev) => prev.filter((x) => x.id !== t.id))}>

@@ -47,4 +47,3 @@ const PaginationEllipsis = ({ className, ...props }: HTMLAttributes<HTMLSpanElem
 );
 
 export { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis };
-export type { PaginationLinkProps };

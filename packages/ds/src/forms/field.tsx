@@ -76,4 +76,3 @@ const FormError = ({ className, children, ref, ...props }: React.ComponentPropsW
 };
 
 export { FormField, FormLabel, FormControl, FormDescription, FormError, useFieldContext };
-export type { FormFieldProps };

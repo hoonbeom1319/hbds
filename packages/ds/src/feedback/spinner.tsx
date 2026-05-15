@@ -30,4 +30,3 @@ const Spinner = ({ className, size = 'md', ...props }: SpinnerProps) => (
 );
 
 export { Spinner };
-export type { SpinnerProps, SpinnerSize };

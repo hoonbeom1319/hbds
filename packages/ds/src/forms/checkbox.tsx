@@ -37,4 +37,3 @@ const Checkbox = ({ className, ref, ...props }: CheckboxProps) => (
 );
 
 export { Checkbox };
-export type { CheckboxProps };

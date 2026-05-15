@@ -27,4 +27,3 @@ const Switch = ({ className, ref, ...props }: SwitchProps) => (
 );
 
 export { Switch };
-export type { SwitchProps };

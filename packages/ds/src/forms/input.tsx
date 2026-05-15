@@ -25,4 +25,3 @@ const Input = ({ className, type = 'text', invalid, ref, ...props }: InputProps)
 );
 
 export { Input };
-export type { InputProps };

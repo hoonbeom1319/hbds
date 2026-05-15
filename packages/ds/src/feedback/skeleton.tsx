@@ -9,4 +9,3 @@ const Skeleton = ({ className, ...props }: SkeletonProps) => (
 );
 
 export { Skeleton };
-export type { SkeletonProps };

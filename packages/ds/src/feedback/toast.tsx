@@ -35,7 +35,7 @@ const Toast = ({ className, variant = 'default', ref, ...props }: ToastProps) =>
     <ToastPrimitive.Root
         ref={ref}
         className={cn(
-            'pointer-events-auto relative flex w-full items-center justify-between gap-3 overflow-hidden rounded-md border p-4 pr-6 shadow-lg',
+            'pointer-events-auto relative flex w-full shrink-0 items-center justify-between gap-3 overflow-hidden rounded-md border p-4 pr-6 shadow-lg',
             'data-[state=open]:animate-toast-in data-[state=closed]:animate-toast-out',
             'data-[swipe=move]:translate-x-(--radix-toast-swipe-move-x) data-[swipe=move]:transition-none',
             'data-[swipe=cancel]:translate-x-0 data-[swipe=cancel]:transition-[transform_200ms_ease-out]',
